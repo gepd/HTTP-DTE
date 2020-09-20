@@ -1,10 +1,22 @@
 ## Lista de Endpoints disponibles
 
+### Opciones
+
+#### Certificación
+
 Para trabajar con el ambiente de certificación agregar `?certificacion=1` a la petición
 
 Ejemplo:
 
 `/dte/factura/previsualizar?certificacion=1`
+
+#### Posición del logo
+
+El logo en los archivos PDF puede tener dos posiciones; izquierda (1) y arriba (0), por defecto está a la izquierda, establecer la variable `logo_izquierda=0` para cambiar la posición.
+
+Ejemplo
+
+`/dte/factura/previsualizar?logo_izquierda=0`
 
 ### Factura Electrónica
 
