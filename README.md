@@ -8,7 +8,7 @@ La implementación de esta API está realizada con docker y docker-compose y sli
 
 Esquema con ejemplo de como usar la librería
 
-![Esquema]("https://github.com/gepd/HTTP-DTE/blob/develop/images/esquema.jpg")
+![Esquema](https://github.com/gepd/HTTP-DTE/blob/develop/images/esquema.jpg?raw=true)
 
 ### Requisitos
 
@@ -33,7 +33,7 @@ _NOTA: No es necesario reiniciar el contenedor al realizar un cambio en la libre
 
 Realiza una petición con cualquier cliente, como por ejemplo Postman
 
-[Lista de endpoints disponibles]("https://github.com/gepd/HTTP-DTE/blob/develop/ENDPOINTS.md") 🔥
+[Lista de endpoints disponibles](https://github.com/gepd/HTTP-DTE/blob/develop/ENDPOINTS.md) 🔥
 
 El archivo `docker-compose.yml` contiene un ejemplo de como comunicar el container de HTTP DTE y el que vayas a usar como backend
 

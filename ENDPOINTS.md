@@ -32,41 +32,41 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```
+```json
 {
-    "LogoUrl":"", // URL a imagen PNG
-    "Firma": {
-        "data": "", // firma codificada en base64
-        "pass": ""
-    },
-    "FchResol": "yyyy-mm-dd",
-    "NroResol": 0,
-    "Folios": {
-        "data": "" // folios codificados en base64
-    },
-    "Folio": 0,
-    "Emisor": {
-        "RUTEmisor": "",
-        "RznSoc": "",
-        "GiroEmis": "",
-        "Acteco": 0,
-        "DirOrigen": "",
-        "CmnaOrigen": ""
-    },
-    "Receptor": {
-        "RUTRecep": "",
-        "RznSocRecep": "",
-        "GiroRecep": "",
-        "DirRecep": "",
-        "CmnaRecep": ""
-    },
-    "Detalle": [
-        {
-            "NmbItem": "",
-            "QtyItem": 0,
-            "PrcItem": 0
-        }
-    ]
+  "LogoUrl": "", // URL a imagen PNG
+  "Firma": {
+    "data": "", // firma codificada en base64
+    "pass": ""
+  },
+  "FchResol": "yyyy-mm-dd",
+  "NroResol": 0,
+  "Folios": {
+    "data": "" // folios codificados en base64
+  },
+  "Folio": 0,
+  "Emisor": {
+    "RUTEmisor": "",
+    "RznSoc": "",
+    "GiroEmis": "",
+    "Acteco": 0,
+    "DirOrigen": "",
+    "CmnaOrigen": ""
+  },
+  "Receptor": {
+    "RUTRecep": "",
+    "RznSocRecep": "",
+    "GiroRecep": "",
+    "DirRecep": "",
+    "CmnaRecep": ""
+  },
+  "Detalle": [
+    {
+      "NmbItem": "",
+      "QtyItem": 0,
+      "PrcItem": 0
+    }
+  ]
 }
 ```
 
@@ -88,59 +88,59 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```
+```json
 {
-    "LogoUrl": "", // URL a imagen PNG
-    "Firma": {
-        "data": "", // firma codificada en base64
-        "pass": ""
+  "LogoUrl": "", // URL a imagen PNG
+  "Firma": {
+    "data": "", // firma codificada en base64
+    "pass": ""
+  },
+  "FchResol": "yyy-mm-dd",
+  "NroResol": 0,
+  "Folios": {
+    "data": "" // folios codificados en base64
+  },
+  "Folio": 0,
+  "Emisor": {
+    "RUTEmisor": "",
+    "RznSoc": "",
+    "GiroEmis": "",
+    "Acteco": 0,
+    "DirOrigen": "",
+    "CmnaOrigen": ""
+  },
+  "Receptor": {
+    "RUTRecep": "",
+    "RznSocRecep": "",
+    "GiroRecep": "",
+    "DirRecep": "",
+    "CmnaRecep": ""
+  },
+  "Detalle": [
+    {
+      "NmbItem": "ITEM AFECTO",
+      "QtyItem": 0,
+      "PrcItem": 0
     },
-    "FchResol": "yyy-mm-dd",
-    "NroResol": 0,
-    "Folios": {
-        "data": "" // folios codificados en base64
+    {
+      "IndExe": 1,
+      "NmbItem": "ITEM EXENTO",
+      "QtyItem": 0,
+      "PrcItem": 0
+    }
+  ],
+  "Referencia": [
+    {
+      "TpoDocRef": "",
+      "FolioRef": 0,
+      "RazonRef": ""
     },
-    "Folio": 0,
-    "Emisor": {
-        "RUTEmisor": "",
-        "RznSoc": "",
-        "GiroEmis": "",
-        "Acteco": 0,
-        "DirOrigen": "",
-        "CmnaOrigen": ""
-    },
-    "Receptor": {
-        "RUTRecep": "",
-        "RznSocRecep": "",
-        "GiroRecep": "",
-        "DirRecep": "",
-        "CmnaRecep": ""
-    },
-    "Detalle": [
-        {
-            "NmbItem": "ITEM AFECTO",
-            "QtyItem": 0,
-            "PrcItem": 0
-        },
-        {
-            "IndExe": 1,
-            "NmbItem": "ITEM EXENTO",
-            "QtyItem": 0,
-            "PrcItem": 0
-        }
-    ],
-    "Referencia": [
-        {
-            "TpoDocRef": "",
-            "FolioRef": 0,
-            "RazonRef": ""
-        },
-        {
-            "TpoDocRef": 0,
-            "FolioRef": 0,
-            "CodRef": 0,
-            "RazonRef": ""
-        }
-    ]
+    {
+      "TpoDocRef": 0,
+      "FolioRef": 0,
+      "CodRef": 0,
+      "RazonRef": ""
+    }
+  ]
 }
 ```
