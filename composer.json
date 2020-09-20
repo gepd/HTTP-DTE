@@ -1,0 +1,7 @@
+{
+    "require": {
+        "sasco/libredte": "20.7.*",
+        "slim/slim": "4.*",
+        "slim/psr7": "1.2.*"
+    }
+}
