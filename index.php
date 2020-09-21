@@ -16,16 +16,12 @@ $app->addBodyParsingMiddleware();
 
 $app->group("/dte", function (RouteCollectorProxy $group) {
     global $facturaEstado;
-    global $facturaPrevisualizar;
-    global $facturaPrevisualizarExenta;
     global $facturaEmitir;
     global $facturaEmitirExenta;
     global $notaDeCredito;
     global $notaDeDebito;
 
     $group->post("/factura/estado", $facturaEstado);
-    $group->post("/factura/previsualizar", $facturaPrevisualizar);
-    $group->post("/factura/exenta/previsualizar", $facturaPrevisualizarExenta);
     $group->post("/factura/emitir", $facturaEmitir);
     $group->post("/factura/exenta/emitir", $facturaEmitirExenta);
 

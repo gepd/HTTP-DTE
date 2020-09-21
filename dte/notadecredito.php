@@ -34,5 +34,5 @@ $notaDeCredito = function (Request $req, Response $res) {
         return array("Caratula" => $caratula, "Documento" => $documento);
     };
 
-    return peticion_dte($callback, $req, $res, true);
+    return peticion_dte($callback, $req, $res);
 };

@@ -8,7 +8,15 @@ Para trabajar con el ambiente de certificación agregar `?certificacion=1` a la 
 
 Ejemplo:
 
-`/dte/factura/previsualizar?certificacion=1`
+`/dte/factura?certificacion=1`
+
+#### Previsualización
+
+Antes de enviar un documento al SII es posible previsualizarla utilizando el parámetro `previsualizacion=1`
+
+Ejemplo:
+
+`/dte/factura?previsualizar=1`
 
 #### Posición del logo
 
@@ -16,23 +24,15 @@ El logo en los archivos PDF puede tener dos posiciones; izquierda (1) y arriba (
 
 Ejemplo
 
-`/dte/factura/previsualizar?logo_izquierda=0`
+`/dte/factura?logo_izquierda=0`
 
 ### Factura Electrónica
 
-1. POST `/dte/factura/previsualizar`
-
-Devuelve un PDF con la previsualziación del documento.
-
-2. POST `/dte/factura/emitir`
+1. POST `/dte/factura/emitir`
 
 Devuelve JSON con TrackId
 
-3. POST `/dte/factura/exenta/previsualizar`
-
-Devuelve un PDF con la previsualziación del documento.
-
-4. POST `/dte/factura/exenta/emitir`
+2. POST `/dte/factura/exenta/emitir`
 
 Devuelve JSON con TrackId
 
@@ -84,11 +84,11 @@ Content-Type: application/json
 
 ### Nota de Crédito / Débito
 
-5. POST `/dte/notadecredito`
+3. POST `/dte/notadecredito`
 
 Devuelve JSON con TrackId
 
-6. POST `/dte/notadedebito`
+4. POST `/dte/notadedebito`
 
 Devuelve JSON con TrackId
 

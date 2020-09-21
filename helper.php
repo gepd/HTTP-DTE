@@ -64,11 +64,12 @@ function obtener_dato_de_query($key, $default, $query)
  * @param res Valores de Response
  * @param previsualizar cuando es true el documento solo se generará como un PDF
  */
-function peticion_dte($data_callback, Request $req, Response $res, $previsualizar = false)
+function peticion_dte($data_callback, Request $req, Response $res)
 {
     $body = $req->getParsedBody();
     $query = $req->getQueryParams();
     $es_certificacion = obtener_dato_de_query("certificacion", 0, $query);
+    $previsualizar = (bool)obtener_dato_de_query("previsualizar", 0, $query);
 
     establecer_ambiente($es_certificacion);
 

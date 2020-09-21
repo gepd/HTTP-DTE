@@ -43,58 +43,6 @@ $facturaEstado = function (Request $req, Response $res) {
     return $res;
 };
 
-$facturaPrevisualizar = function (Request $req, Response $res) {
-    $callback = function ($body) {
-        $caratula = [
-            'RutReceptor' => $body["Receptor"]["RUTRecep"],
-            'FchResol' => $body["FchResol"],
-            'NroResol' => $body["NroResol"],
-        ];
-
-        $documento = [
-            'Encabezado' => [
-                'IdDoc' => [
-                    'TipoDTE' => 33,
-                    'Folio' => $body["Folio"],
-                ],
-                'Emisor' => $body["Emisor"],
-                'Receptor' => $body["Receptor"],
-            ],
-            'Detalle' => $body["Detalle"],
-        ];
-
-        return array("Caratula" => $caratula, "Documento" => $documento);
-    };
-
-    return peticion_dte($callback, $req, $res, true);
-};
-
-$facturaPrevisualizarExenta = function (Request $req, Response $res) {
-    $callback = function ($body) {
-        $caratula = [
-            'RutReceptor' => $body["Receptor"]["RUTRecep"],
-            'FchResol' => $body["FchResol"],
-            'NroResol' => $body["NroResol"],
-        ];
-
-        $documento = [
-            'Encabezado' => [
-                'IdDoc' => [
-                    'TipoDTE' => 34,
-                    'Folio' => $body["Folio"],
-                ],
-                'Emisor' => $body["Emisor"],
-                'Receptor' => $body["Receptor"],
-            ],
-            'Detalle' => $body["Detalle"],
-        ];
-
-        return array("Caratula" => $caratula, "Documento" => $documento);
-    };
-
-    return peticion_dte($callback, $req, $res, true);
-};
-
 $facturaEmitir = function (Request $req, Response $res) {
     $callback = function ($body) {
         $caratula = [
