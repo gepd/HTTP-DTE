@@ -43,6 +43,11 @@ function DTE($firma, $folios, $caratula, $documento, $previsualizar = false)
         }
         return array("DTE" => $DTE, "EnvioDTE" => $EnvioDTE);
     }
+
+    // Mostrar error si hubo
+    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+        echo $error, "\n";
+
     return false;
 }
 
