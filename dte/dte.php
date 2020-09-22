@@ -115,5 +115,41 @@ function generarDocumento($firma, $folios, $caratula, $documento, $logoUrl, $que
 
         return $Pdf;
     }
-    return $Resultado["TrackId"];;
+
+function enviar_libro($firma, $caratula, $documento)
+{
+
+    // Decodifica la firma que viene en base64
+    $firma = obtener_dato_base64($firma, "FIRMA_NO_BASE64");
+
+    // Verifica que la fecha tenga el formato yyyy-mm-dd
+    if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $caratula["FchResol"])) {
+        die(get_error("FORMATO_FECHA_RESOL"));
+    }
+
+    // Objetos de Firma y LibroGuia
+    $Firma = new \sasco\LibreDTE\FirmaElectronica($firma);
+    $LibroGuia = new \sasco\LibreDTE\Sii\LibroGuia();
+
+    // agregar cada uno de los detalles al libro
+    foreach ($documento["Detalle"] as $detalle) {
+        $detalle["TasaImp"] = \sasco\LibreDTE\Sii::getIVA();
+        $LibroGuia->agregar($detalle);
+    }
+
+    // enviar libro de guías y mostrar resultado del envío: track id o bien =false si hubo error
+    $LibroGuia->setFirma($Firma);
+    $LibroGuia->setCaratula($caratula);
+    $LibroGuia->generar();
+
+    if ($LibroGuia->schemaValidate()) {
+        $Track_id = $LibroGuia->enviar();
+        return json_encode(array("TrackId" => $Track_id));
+    }
+
+    // si hubo errores mostrar
+    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+        echo $error, "\n";
+
+    return false;
 }

@@ -179,3 +179,35 @@ Content-Type: application/json
   }
 }
 ```
+
+### Libro de Guías de Despacho
+
+6. POST `/dte/libroguiadedespacho`
+
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```json
+{
+  "Firma": {
+    "data": "", // Firma codificada en base64
+    "pass": ""
+  },
+  "RutEmisorLibro": "",
+  "FchResol": "",
+  "NroResol": 0,
+  "FolioNotificacion": 0,
+  "Detalle": [
+    {
+      "Folio": 0,
+      "TpoOper": 0,
+      "RUTDoc": ""
+    }
+  ]
+}
+```

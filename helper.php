@@ -79,7 +79,27 @@ function peticion_dte($data_callback, Request $req, Response $res)
 
     $data = $data_callback($body);
 
-    $result = generarDocumento($firma, $folios, $data["Caratula"], $data["Documento"], $logoUrl, $query, $previsualizar);
+
+/**
+ * Realiza una petición (emisión) de un libro de guias de despacho al SII
+ * @param data_callback callback usado para parsear los valores enviados
+ * en el cuerpo de la petición.
+ * @param req Valores de Request
+ * @param res Valores de Response
+ */
+function peticion_libro($data_callback, Request $req, Response $res)
+{
+    $body = $req->getParsedBody();
+    $query = $req->getQueryParams();
+    $es_certificacion = obtener_dato_de_query("certificacion", 0, $query);
+
+    establecer_ambiente($es_certificacion);
+
+    $firma = $body["Firma"];
+
+    $data = $data_callback($body);
+
+    $result = enviar_libro($firma, $data["Caratula"], $data["Documento"]);
 
     $res->getBody()->write($result);
 

@@ -5,6 +5,7 @@ include 'inc.php';
 
 include_once('./dte/factura.php');
 include_once('./dte/notadecredito.php');
+include_once('./dte/libros.php');
 
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
@@ -20,6 +21,7 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
     global $facturaEmitirExenta;
     global $notaDeCredito;
     global $notaDeDebito;
+    global $libroGuiaDespacho;
 
     $group->post("/estado", $dteEstado);
     $group->post("/factura/emitir", $facturaEmitir);
@@ -27,6 +29,8 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
 
     $group->post("/notadecredito", $notaDeCredito);
     $group->post("/notadedebito", $notaDeDebito);
+
+    $group->post("/libroguiadedespacho", $libroGuiaDespacho);
 });
 
 $app->run();
