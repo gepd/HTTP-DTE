@@ -19,5 +19,5 @@ $libroGuiaDespacho = function (Request $req, Response $res) {
         return array("Caratula" => $caratula, "Documento" => $documento);
     };
 
-    return peticion_libro($callback, $req, $res);
+    return peticion_libro_guia($callback, $req, $res);
 }

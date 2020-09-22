@@ -91,7 +91,7 @@ function peticion_dte($data_callback, Request $req, Response $res)
  * @param req Valores de Request
  * @param res Valores de Response
  */
-function peticion_libro($data_callback, Request $req, Response $res)
+function peticion_libro_guia($data_callback, Request $req, Response $res)
 {
     $body = $req->getParsedBody();
     $query = $req->getQueryParams();
@@ -103,12 +103,14 @@ function peticion_libro($data_callback, Request $req, Response $res)
 
     $data = $data_callback($body);
 
-    $result = enviar_libro($firma, $data["Caratula"], $data["Documento"]);
+    $result = enviar_libro_guia($firma, $data["Caratula"], $data["Documento"]);
 
     $res->getBody()->write($result);
 
     return $res;
 }
+
+
 
 /**
  * Establece el ambiente y el servidor que será usado (maullin y palena)

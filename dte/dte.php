@@ -124,7 +124,13 @@ function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $qu
     return $Resultado["TrackId"];
 }
 
-function enviar_libro($firma, $caratula, $documento)
+/**
+ * Envía libro con guías de despacho al SII
+ * @param firma array con firma electrónica
+ * @param caratula array con caratula para generar libro
+ * @param documento array con documentos a agregar al libro
+ */
+function enviar_libro_guia($firma, $caratula, $documento)
 {
 
     // Decodifica la firma que viene en base64
