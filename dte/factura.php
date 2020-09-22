@@ -5,7 +5,7 @@ include_once(dirname(__FILE__) . "/dte.php");
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-$facturaEstado = function (Request $req, Response $res) {
+$dteEstado = function (Request $req, Response $res) {
     $body = $req->getParsedBody();
     $query = $req->getQueryParams();
     $es_certificacion = obtener_dato_de_query("certificacion", 0, $query);

@@ -15,13 +15,13 @@ $app->addErrorMiddleware(true, false, false);
 $app->addBodyParsingMiddleware();
 
 $app->group("/dte", function (RouteCollectorProxy $group) {
-    global $facturaEstado;
+    global $dteEstado;
     global $facturaEmitir;
     global $facturaEmitirExenta;
     global $notaDeCredito;
     global $notaDeDebito;
 
-    $group->post("/factura/estado", $facturaEstado);
+    $group->post("/estado", $dteEstado);
     $group->post("/factura/emitir", $facturaEmitir);
     $group->post("/factura/exenta/emitir", $facturaEmitirExenta);
 

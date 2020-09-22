@@ -156,3 +156,26 @@ Content-Type: application/json
   ]
 }
 ```
+
+### Estado de un documento
+
+5. POST `/dte/estado`
+
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```json
+{
+  "rut": "",
+  "trackId": "",
+  "Firma": {
+    "data": "", // Firma codificada en base64
+    "pass": ""
+  }
+}
+```
