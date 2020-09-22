@@ -59,7 +59,7 @@ function DTE($firma, $folios, $caratula, $documento, $previsualizar = false)
  * @param logoIzquierda si el valor es 1 ajusta el logo a la izquierda. Si es 0, arriba.
  * @param pdfName nombre del pdf a generar
  */
-function generarPDF($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
+function generar_pdf($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
 {
     $Documentos = $envioDTE->getDocumentos();
     $caratula = $envioDTE->getCaratula();
@@ -92,7 +92,7 @@ function generarPDF($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
  * @param query valores obtenidos desde getQueryParams
  * @param previsualizar si el valor es true genera un PDF y lo devuelve. Si es false lo envía al SII
  */
-function generarDocumento($firma, $folios, $caratula, $documento, $logoUrl, $query, $previsualizar = false)
+function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $query, $previsualizar = false)
 {
 
     // Obtiene la posición del logo
@@ -116,7 +116,7 @@ function generarDocumento($firma, $folios, $caratula, $documento, $logoUrl, $que
     if ($previsualizar) {
         $EnvioDTE = $Resultado["EnvioDTE"];
         $pdf_name = 'dte_' . $DTE->getEmisor() . $DTE->getID() . '.pdf';
-        $Pdf = generarPdf($EnvioDTE, $logoUrl, $logo_izquierda, $pdf_name);
+        $Pdf = generar_pdf($EnvioDTE, $logoUrl, $logo_izquierda, $pdf_name);
 
         return $Pdf;
     }

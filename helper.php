@@ -79,6 +79,12 @@ function peticion_dte($data_callback, Request $req, Response $res)
 
     $data = $data_callback($body);
 
+    $result = generar_documento($firma, $folios, $data["Caratula"], $data["Documento"], $logoUrl, $query);
+
+    $res->getBody()->write($result);
+
+    return $res;
+}
 
 /**
  * Realiza una petición (emisión) de un libro de guias de despacho al SII
