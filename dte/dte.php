@@ -90,10 +90,11 @@ function generar_pdf($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
  * @param documento array con valores para agregar en el DTE
  * @param logoUrl URL al logo en formato PNG para agregar al PDF
  * @param query valores obtenidos desde getQueryParams
- * @param previsualizar si el valor es true genera un PDF y lo devuelve. Si es false lo envía al SII
  */
-function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $query, $previsualizar = false)
+function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $query)
 {
+    // Obtiene la posición del logo
+    $previsualizar = (bool)obtener_dato_de_query("previsualizar", 0, $query) + 0;
 
     // Obtiene la posición del logo
     $logo_izquierda = obtener_dato_de_query("logo_izquierda", 1, $query) + 0;
@@ -120,6 +121,8 @@ function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $qu
 
         return $Pdf;
     }
+    return $Resultado["TrackId"];
+}
 
 function enviar_libro($firma, $caratula, $documento)
 {
