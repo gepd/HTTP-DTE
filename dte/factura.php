@@ -29,8 +29,8 @@ $facturaEstado = function (Request $req, Response $res) {
     // Si el estado se pudo recuperar se muestra estado y glosa (json)
     if ($estado !== false) {
         $response = json_encode([
-            'codigo' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/ESTADO')[0],
-            'glosa' => (string)$estado->xpath('/SII:RESPUESTA/SII:RESP_HDR/GLOSA')[0],
+            'HDR' => $estado->xpath('/SII:RESPUESTA/SII:RESP_HDR'),
+            'BODY' => $estado->xpath('/SII:RESPUESTA/SII:RESP_BODY')
         ]);
 
         $res->getBody()->write($response);
