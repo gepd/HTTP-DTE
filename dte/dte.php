@@ -167,3 +167,46 @@ function enviar_libro_guia($firma, $caratula, $documento)
 
     return false;
 }
+
+const LIBRO_COMPRA = "COMPRA";
+const LIBRO_VENTA = "VENTA";
+
+/**
+ * Envía libro de compra y venta al SII
+ * @param firma array con firma electrónica
+ * @param caratula array con caratula para generar libro
+ * @param archivoParseado archivo csv parseado (array)
+ * @param tipoOperacion COMPRA: libro de compra. VENTA: libro de venta
+ * @param query array con variables GET
+ */
+function enviar_libro_compra_venta($firma, $caratula, $archivoParseado, $tipoOperacion, $query)
+{
+    // Cuando es 1 el libro es simplificado
+    $simplificado = (bool)obtener_dato_de_query("simplificado", 0, $query) + 0;
+
+    // Decodifica la firma que viene en base64
+    $firma = obtener_dato_base64($firma, "FIRMA_NO_BASE64");
+
+    // Objetos de Firma y LibroCompraVenta
+    $Firma = new \sasco\LibreDTE\FirmaElectronica($firma);
+    $LibroCompraVenta = new \sasco\LibreDTE\Sii\LibroCompraVenta($simplificado);
+
+    if ($tipoOperacion === LIBRO_COMPRA) {
+        $LibroCompraVenta->agregarComprasArray($archivoParseado);
+    } elseif ($tipoOperacion === LIBRO_VENTA) {
+        $LibroCompraVenta->agregarVentasArray($archivoParseado);
+    }
+
+    $LibroCompraVenta->setCaratula($caratula);
+    $LibroCompraVenta->generar();
+    $LibroCompraVenta->setFirma($Firma);
+    $TrackId = $LibroCompraVenta->enviar();
+
+    if ($TrackId) {
+        return json_encode(array("TrackId" => $TrackId));
+    }
+
+    // si hubo errores mostrar
+    foreach (\sasco\LibreDTE\Log::readAll() as $error)
+        echo $error, "\n";
+}

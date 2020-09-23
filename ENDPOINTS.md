@@ -211,3 +211,34 @@ Content-Type: application/json
   ]
 }
 ```
+
+### Libro de Compra y Venta
+
+6. POST `/dte/librocompraventa`
+
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```json
+{
+  "Firma": {
+    "data": "", // firma en base64
+    "pass": ""
+  },
+  "RutEmisorLibro": "",
+  "RutEnvia": "",
+  "PeriodoTributario": "",
+  "TipoOperacion": "",
+  "TipoLibro": "",
+  "TipoEnvio": "",
+  "FchResol": "",
+  "NroResol": 0,
+  "FolioNotificacion": 0,
+  "Libro": "" // Libro codificado en base64
+}
+```
