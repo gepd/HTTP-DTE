@@ -26,6 +26,17 @@ Ejemplo
 
 `/dte/factura?logo_izquierda=0`
 
+#### Delimitador CSV
+
+En los casos como los libros de compra y venta en que se envía el libro en formato CSV se puede usar la varible
+`csv_delimitador` para definir el delimitador del archivo.
+
+por defecto: `csv_delimitador=;`
+
+Ejemplo
+
+`/dte/factura?csv_delimitador=,`
+
 ### Factura Electrónica
 
 1. POST `/dte/factura/emitir`
@@ -209,5 +220,36 @@ Content-Type: application/json
       "RUTDoc": ""
     }
   ]
+}
+```
+
+### Libro de Compra y Venta
+
+6. POST `/dte/librocompraventa`
+
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```json
+{
+  "Firma": {
+    "data": "", // firma en base64
+    "pass": ""
+  },
+  "RutEmisorLibro": "",
+  "RutEnvia": "",
+  "PeriodoTributario": "",
+  "TipoOperacion": "",
+  "TipoLibro": "",
+  "TipoEnvio": "",
+  "FchResol": "",
+  "NroResol": 0,
+  "FolioNotificacion": 0,
+  "Libro": "" // Libro codificado en base64
 }
 ```

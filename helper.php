@@ -110,7 +110,95 @@ function peticion_libro_guia($data_callback, Request $req, Response $res)
     return $res;
 }
 
+/**
+ * Realiza una petición (emisión) de un libro de compra y venta al SII
+ * @param data_callback callback usado para parsear los valores enviados
+ * en el cuerpo de la petición.
+ * @param req Valores de Request
+ * @param res Valores de Response
+ */
+function peticion_libro_compra_venta($data_callback, Request $req, Response $res)
+{
+    $body = $req->getParsedBody();
+    $query = $req->getQueryParams();
+    $es_certificacion = obtener_dato_de_query("certificacion", 0, $query);
+    $csv_delimitador = obtener_dato_de_query("csv_delimitador", ";", $query);
+    $tipoOperacion = strtoupper($body["TipoOperacion"]);
 
+    establecer_ambiente($es_certificacion);
+
+    $firma = $body["Firma"];
+
+    $data = $data_callback($body);
+
+    $libroDecodificado = base64_decode($data["Libro"]);
+
+    $archivoParseado = texto_csv_array($libroDecodificado, $csv_delimitador);
+
+    $result = enviar_libro_compra_venta($firma, $data["Caratula"], $archivoParseado, $tipoOperacion, $query);
+
+    $res->getBody()->write($result);
+
+    return $res;
+}
+
+/**
+ * Convierte el contenido de un csv a un array de PHP
+ * 
+ * @param contenido contenido del csv en texto
+ * @param delimitador caracter usado como delimitador de cada valor
+ * @param escape caracter usado para escapar los caracteres especiales
+ * @param enclosure valor usado para delimitar las cadenas de texto
+ */
+function texto_csv_array($contenido, $delimitador = ';', $escape = '\\', $enclosure = '"')
+{
+    $lineas = array();
+    $campos = array();
+
+    if ($escape == $enclosure) {
+        $escape = '\\';
+        $contenido = str_replace(
+            array('\\', $enclosure . $enclosure, "\r\n", "\r"),
+            array('\\\\', $escape . $enclosure, "\\n", "\\n"),
+            $contenido
+        );
+    } else
+        $contenido = str_replace(array("\r\n", "\r"), array("\\n", "\\n"), $contenido);
+
+    $nb = strlen($contenido);
+    $campo = '';
+    $enEnclosure = false;
+    $anterior = '';
+
+    for ($i = 0; $i < $nb; $i++) {
+        $c = $contenido[$i];
+        if ($c === $enclosure) {
+            if ($anterior !== $escape)
+                $enEnclosure ^= true;
+            else
+                $campo .= $enclosure;
+        } else if ($c === $escape) {
+            $next = $contenido[$i + 1];
+            if ($next != $enclosure && $next != $escape)
+                $campo .= $escape;
+        } else if ($c === $delimitador) {
+            if ($enEnclosure)
+                $campo .= $delimitador;
+            else {
+                $campos[] = $campo;
+                $campo = '';
+            }
+        } else if ($c === "\n") {
+            $campos[] = $campo;
+            $campo = '';
+            $lineas[] = $campos;
+            $campos = array();
+        } else
+            $campo .= $c;
+        $anterior = $c;
+    }
+    return $lineas;
+}
 
 /**
  * Establece el ambiente y el servidor que será usado (maullin y palena)

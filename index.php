@@ -22,6 +22,7 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
     global $notaDeCredito;
     global $notaDeDebito;
     global $libroGuiaDespacho;
+    global $libroCompraVenta;
 
     $group->post("/estado", $dteEstado);
     $group->post("/factura/emitir", $facturaEmitir);
@@ -31,6 +32,7 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
     $group->post("/notadedebito", $notaDeDebito);
 
     $group->post("/libroguiadedespacho", $libroGuiaDespacho);
+    $group->post("/librocompraventa", $libroCompraVenta);
 });
 
 $app->run();
