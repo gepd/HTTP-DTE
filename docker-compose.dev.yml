@@ -3,7 +3,7 @@ services:
   app:
     restart: "always"
     image: chialab/php:7.3-fpm
-    command: bash -c "composer install && composer update && php -S 0.0.0.0:8000 index.php"
+    command: bash -c "composer install && php -S 0.0.0.0:8000 index.php"
     ports:
       - "8000:8000"
     volumes:
