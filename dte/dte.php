@@ -93,7 +93,7 @@ function generar_pdf($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
  */
 function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $query)
 {
-    // Obtiene la posición del logo
+    // previsualizar o enviar documento
     $previsualizar = (bool)obtener_dato_de_query("previsualizar", 0, $query) + 0;
 
     // Obtiene la posición del logo
