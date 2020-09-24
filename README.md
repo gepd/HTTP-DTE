@@ -27,6 +27,8 @@ La estalación es muy simple, solo clona este reprositorio y ejecuta el siguient
 
 Esto instalará todas las dependencias automáticamente y quedará listo para usar 🚀
 
+Puedes acceder a la api desde: `http://localhost:8000`
+
 _NOTA: No es necesario reiniciar el contenedor al realizar un cambio en la librería, estos serán reconocidos automáticamente_
 
 ### Peticiones
