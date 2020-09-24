@@ -37,13 +37,65 @@ Ejemplo
 
 `/dte/factura?csv_delimitador=,`
 
-### Factura Electrónica
+### Boleta Electrónica
 
-1. POST `/dte/factura/emitir`
+1. POST `/dte/boleta/emitir`
 
 Devuelve JSON con TrackId
 
-2. POST `/dte/factura/exenta/emitir`
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```json
+{
+  "LogoUrl": "", // URL a imagen PNG
+  "Firma": {
+    "data": "", // firma codificada en base64
+    "pass": ""
+  },
+  "FchResol": "yyyy-mm-dd",
+  "NroResol": 0,
+  "Folios": {
+    "data": "" // folios codificados en base64
+  },
+  "Folio": 0,
+  "Emisor": {
+    "RUTEmisor": "",
+    "RznSoc": "",
+    "GiroEmis": "",
+    "Acteco": 0,
+    "DirOrigen": "",
+    "CmnaOrigen": ""
+  },
+  "Receptor": {
+    "RUTRecep": "",
+    "RznSocRecep": "",
+    "GiroRecep": "",
+    "DirRecep": "",
+    "CmnaRecep": ""
+  },
+  "Detalle": [
+    {
+      "NmbItem": "",
+      "QtyItem": 0,
+      "PrcItem": 0
+    }
+  ]
+}
+```
+
+### Factura Electrónica
+
+2. POST `/dte/factura/emitir`
+
+Devuelve JSON con TrackId
+
+3. POST `/dte/factura/exenta/emitir`
 
 Devuelve JSON con TrackId
 
@@ -95,11 +147,11 @@ Content-Type: application/json
 
 ### Nota de Crédito / Débito
 
-3. POST `/dte/notadecredito`
+4. POST `/dte/notadecredito`
 
 Devuelve JSON con TrackId
 
-4. POST `/dte/notadedebito`
+5. POST `/dte/notadedebito`
 
 Devuelve JSON con TrackId
 
@@ -170,7 +222,7 @@ Content-Type: application/json
 
 ### Estado de un documento
 
-5. POST `/dte/estado`
+6. POST `/dte/estado`
 
 #### Cabecera
 
@@ -193,7 +245,7 @@ Content-Type: application/json
 
 ### Libro de Guías de Despacho
 
-6. POST `/dte/libroguiadedespacho`
+7. POST `/dte/libroguiadedespacho`
 
 #### Cabecera
 
@@ -225,7 +277,7 @@ Content-Type: application/json
 
 ### Libro de Compra y Venta
 
-6. POST `/dte/librocompraventa`
+8. POST `/dte/librocompraventa`
 
 #### Cabecera
 

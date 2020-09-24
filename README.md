@@ -46,7 +46,7 @@ El archivo `docker-compose.yml` contiene un ejemplo de como comunicar el contain
 - [x] Envío Libro de Guías de Despacho
 - [x] Envío de Libro de Compras
 - [x] Envío de Libro de Ventas
-- [ ] Envío de Boleta Electrónica
+- [x] Envío de Boleta Electrónica
 - [x] Leer estado de DTE
 - [ ] Lista de Contribuyentes Autorizados
 - [ ] Enviar Multiples DTEs

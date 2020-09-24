@@ -3,6 +3,7 @@ header("Content-Type: application/json");
 
 include 'inc.php';
 
+include_once('./dte/boleta.php');
 include_once('./dte/factura.php');
 include_once('./dte/notadecredito.php');
 include_once('./dte/libros.php');
@@ -17,6 +18,7 @@ $app->addBodyParsingMiddleware();
 
 $app->group("/dte", function (RouteCollectorProxy $group) {
     global $dteEstado;
+    global $boletaEmitir;
     global $facturaEmitir;
     global $facturaEmitirExenta;
     global $notaDeCredito;
@@ -25,6 +27,7 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
     global $libroCompraVenta;
 
     $group->post("/estado", $dteEstado);
+    $group->post("/boleta/emitir", $boletaEmitir);
     $group->post("/factura/emitir", $facturaEmitir);
     $group->post("/factura/exenta/emitir", $facturaEmitirExenta);
 
