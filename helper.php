@@ -73,7 +73,10 @@ function peticion_dte($data_callback, Request $req, Response $res)
 
     $firma = $body["Firma"];
     $folios = $body["Folios"];
-    $logoUrl = $body["LogoUrl"];
+    $logoUrl = null;
+    if (array_key_exists("LogoUrl", $body)) {
+        $logoUrl = $body["LogoUrl"];
+    }
 
     $data = $data_callback($body);
 
