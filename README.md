@@ -41,10 +41,7 @@ El archivo `docker-compose.yml` contiene un ejemplo de como comunicar el contain
 
 ### Lista de Tareas
 
-- [x] Envío de Facturas
-- [x] Envío de Facturas Exentas
-- [x] Envío de Nota de Crédito
-- [x] Envío de Nota de Débito
+- [x] Guía de Despacho (52)
 - [x] Envío Libro de Guías de Despacho
 - [x] Envío de Libro de Compras
 - [x] Envío de Libro de Ventas

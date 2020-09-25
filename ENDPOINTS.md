@@ -220,9 +220,67 @@ Content-Type: application/json
 }
 ```
 
+### Guía de Despacho
+
+6. POST `/dte/guiadespacho/emitir`
+
+Devuelve JSON con TrackId
+
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```json
+{
+  "LogoUrl": "", // URL a imagen PNG
+  "Firma": {
+    "data": "", // Firma codificada en base64
+    "pass": ""
+  },
+  "Folios": {
+    "data": "" // Folios codificados en base64
+  },
+  "FchResol": "",
+  "NroResol": 0,
+  "Folio": 0,
+  "TipoDespacho": 0,
+  "IndTraslado": 0,
+  "Detalle": [
+    {
+      "NmbItem": "",
+      "QtyItem": ""
+    }
+  ],
+  "Referencia": [
+    {
+      "TpoDocRef": "",
+      "FolioRef": 0,
+      "RazonRef": ""
+    }
+  ],
+  "Emisor": {
+    "RUTEmisor": "",
+    "RznSoc": "",
+    "GiroEmis": "",
+    "Acteco": 0,
+    "CorreoEmisor": ""
+  },
+  "Receptor": {
+    "RUTRecep": "",
+    "RznSocRecep": "",
+    "DirRecep": "",
+    "CmnaRecep": ""
+  }
+}
+```
+
 ### Estado de un documento
 
-6. POST `/dte/estado`
+7. POST `/dte/estado`
 
 #### Cabecera
 
@@ -245,7 +303,7 @@ Content-Type: application/json
 
 ### Libro de Guías de Despacho
 
-7. POST `/dte/libroguiadedespacho`
+8. POST `/dte/libroguiadedespacho`
 
 #### Cabecera
 
@@ -277,7 +335,7 @@ Content-Type: application/json
 
 ### Libro de Compra y Venta
 
-8. POST `/dte/librocompraventa`
+9. POST `/dte/librocompraventa`
 
 #### Cabecera
 
