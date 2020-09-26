@@ -70,8 +70,15 @@ function DTE($firma, $folios, $caratula, $documentos, $previsualizar = false)
  * @param logoUrl URL apunto a una imagen PNG para agregar al DTE
  * @param logoIzquierda si el valor es 1 ajusta el logo a la izquierda. Si es 0, arriba.
  * @param pdfName nombre del pdf a generar
+ * @param papelContinuo define si el papel será continuo o no.
+ * Possibles valores:
+ *  0   : Hoja carta
+ *  57  : Papel contínuo 57mm
+ *  75  : Papel contínuo 75mm
+ *  80  : Papel contínuo 80mm
+ *  110 : Papel contínuo 110mm
  */
-function generar_pdf($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
+function generar_pdf($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName, $papelContinuo = 0)
 {
     $Documentos = $envioDTE->getDocumentos();
     $caratula = $envioDTE->getCaratula();
@@ -80,7 +87,7 @@ function generar_pdf($envioDTE, $logoUrl, $logoIzquierda = 1, $pdfName)
         if (!$DTE->getDatos())
             die(get_error("NO_DTE_DATA"));
 
-        $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte(false);
+        $pdf = new \sasco\LibreDTE\Sii\Dte\PDF\Dte($papelContinuo);
 
         if ($logoUrl) {
             $pdf->setLogo($logoUrl, $logoIzquierda);
@@ -111,6 +118,9 @@ function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $qu
     // Obtiene la posición del logo
     $logo_izquierda = obtener_dato_de_query("logo_izquierda", 1, $query) + 0;
 
+    // Obtiene el valor para el papel continuo
+    $papelContinuo = obtener_dato_de_query("papel_continuo", false, $query) + 0;
+
     // Decodifica la firma que viene en base64
     $firma = obtener_dato_base64($firma, "FIRMA_NO_BASE64");
 
@@ -135,7 +145,7 @@ function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $qu
     if ($previsualizar) {
         $EnvioDTE = $Resultado["EnvioDTE"];
         $pdf_name = 'dte_' . $DTE->getEmisor() . $DTE->getID() . '.pdf';
-        $Pdf = generar_pdf($EnvioDTE, $logoUrl, $logo_izquierda, $pdf_name);
+        $Pdf = generar_pdf($EnvioDTE, $logoUrl, $logo_izquierda, $pdf_name, $papelContinuo);
 
         return $Pdf;
     }

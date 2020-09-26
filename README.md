@@ -53,8 +53,8 @@ El archivo `docker-compose.yml` contiene un ejemplo de como comunicar el contain
 - [x] Leer estado de DTE
 - [x] Enviar Set de Pruebas Básico
 - [x] Enviar Multiples DTEs
+- [x] Selección de Formato de Hoja en PDF
 - [ ] Lista de Contribuyentes Autorizados
-- [ ] Selección de Formato de Hoja en PDF
 - [ ] Mejorar manejo de errores
 
 ### Contribuciones

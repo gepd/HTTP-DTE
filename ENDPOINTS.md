@@ -32,6 +32,22 @@ Ejemplo
 
 _por defecto: `logo_izquierda=1`_
 
+#### Papel Continuo
+
+Al general un documento es posible definir el tipo de papel en el cual se va a imprimir, los posibles valores son:
+
+- 0: Hoja carta
+- 57: Papel contínuo 57mm
+- 75: Papel contínuo 75mm
+- 80: Papel contínuo 80mm
+- 110: Papel contínuo 110mm
+
+Ejemplo
+
+`/dte/factura?papel_continuo=57`
+
+_por defecto: `papel_continuo=0`_
+
 #### Delimitador CSV
 
 En los casos como los libros de compra y venta en que se envía el libro en formato CSV se puede usar la varible
