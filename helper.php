@@ -80,6 +80,10 @@ function peticion_dte($data_callback, Request $req, Response $res)
 
     $data = $data_callback($body);
 
+    if (array_key_exists("ListaFolios", $data)) {
+        $folios = $data["ListaFolios"];
+    }
+
     $result = generar_documento($firma, $folios, $data["Caratula"], $data["Documento"], $logoUrl, $query);
 
     $res->getBody()->write($result);

@@ -12,26 +12,38 @@ include_once("./helper.php");
  *  los campos 'data' y 'pass'
  * @param folios folios para enviar el documento
  * @param caratula array con caratula para generar DTE ('RutReceptor', 'FchResol', 'NroResol')
- * @param documento array con valores para generar documentos, este valor variará dependiendo
- * del tipo de de documento a enviar
+ * @param documentos lista de documento o documento único a enviar
  * @param previsualizar si el valor es true no enviará el documento al SII y devolverá array con DTE
  * y EnvioDTE, si el valor es False, enviará el documento y retornará array con DTE y TrackId
  */
-function DTE($firma, $folios, $caratula, $documento, $previsualizar = false)
+function DTE($firma, $folios, $caratula, $documentos, $previsualizar = false)
 {
-    // Objetos de Firma y Folios
-    $firma = new \sasco\LibreDTE\FirmaElectronica($firma);
-    $folios = new \sasco\LibreDTE\Sii\Folios($folios);
-
-    // Generar XML del DTE timbrado y firmado
-    $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
-    $DTE->timbrar($folios);
-    $DTE->firmar($firma);
-
     // Generar sobre con el envío del DTE y enviar al SII
     $EnvioDTE = new \sasco\LibreDTE\Sii\EnvioDte();
-    $EnvioDTE->agregar($DTE);
-    $EnvioDTE->setFirma($firma);
+
+    // Objetos de Firma y Folios
+    $Firma = new \sasco\LibreDTE\FirmaElectronica($firma);
+
+    // Generar XML del DTE timbrado y firmado
+    if (is_array($documentos) and array_key_exists("Encabezado", $documentos)) {
+        $Folio = new \sasco\LibreDTE\Sii\Folios($folios);
+
+        $DTE = new \sasco\LibreDTE\Sii\Dte($documentos);
+        $DTE->timbrar($Folio);
+        $DTE->firmar($Firma);
+        $EnvioDTE->agregar($DTE);
+    } else {
+        foreach ($documentos as $documento) {
+            $DTE = new \sasco\LibreDTE\Sii\Dte($documento);
+            $Folio = new \sasco\LibreDTE\Sii\Folios($folios[$DTE->getTipo()]["data"]);
+
+            $DTE->timbrar($Folio);
+            $DTE->firmar($Firma);
+            $EnvioDTE->agregar($DTE);
+        }
+    }
+
+    $EnvioDTE->setFirma($Firma);
     $EnvioDTE->setCaratula($caratula);
     $EnvioDTE->generar();
 
@@ -103,14 +115,20 @@ function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $qu
     $firma = obtener_dato_base64($firma, "FIRMA_NO_BASE64");
 
     // Decodifica los folios que vienen en base64
-    $folios = obtener_dato_base64($folios, "FOLIOS_NO_BASE64");
+    if (array_key_exists("data", $folios)) {
+        $folios = obtener_dato_base64($folios, "FOLIOS_NO_BASE64")["data"];
+    } else {
+        foreach ($folios as $key => $folio) {
+            $folios[$key] = obtener_dato_base64($folio, "FOLIOS_NO_BASE64");
+        }
+    }
 
     // Verifica que la fecha tenga el formato yyyy-mm-dd
     if (!preg_match("/^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/", $caratula["FchResol"])) {
         die(get_error("FORMATO_FECHA_RESOL"));
     }
 
-    $Resultado = DTE($firma, $folios["data"], $caratula, $documento, $previsualizar);
+    $Resultado = DTE($firma, $folios, $caratula, $documento, $previsualizar);
 
     $DTE = $Resultado["DTE"];
 
@@ -121,7 +139,7 @@ function generar_documento($firma, $folios, $caratula, $documento, $logoUrl, $qu
 
         return $Pdf;
     }
-    return $Resultado["TrackId"];
+    return json_encode(array("TrackId" => $Resultado["TrackId"]));
 }
 
 /**

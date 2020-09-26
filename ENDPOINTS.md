@@ -333,9 +333,9 @@ Content-Type: application/json
 }
 ```
 
-### Libro de Compra y Venta
+### Set Básico de Pruebas
 
-9. POST `/dte/librocompraventa`
+10. POST `/dte/setbasico`
 
 #### Cabecera
 
@@ -348,18 +348,35 @@ Content-Type: application/json
 ```json
 {
   "Firma": {
-    "data": "", // firma en base64
+    "data": "", // Firma codificada en base64
     "pass": ""
   },
-  "RutEmisorLibro": "",
-  "RutEnvia": "",
-  "PeriodoTributario": "",
-  "TipoOperacion": "",
-  "TipoLibro": "",
-  "TipoEnvio": "",
+  "Folios": {
+    "": {
+      // Tipo de DTE (ej. 33)
+      "primer": 0, // Primer folio disponible para usar
+      "data": "" // Folios codificados en base64
+    }
+  },
+  "Set": {
+    "data": "" // Set básico codificado en base64
+  },
   "FchResol": "",
   "NroResol": 0,
-  "FolioNotificacion": 0,
-  "Libro": "" // Libro codificado en base64
+  "Emisor": {
+    "RUTEmisor": "",
+    "RznSoc": "",
+    "GiroEmis": "",
+    "Acteco": 0,
+    "DirOrigen": "",
+    "CmnaOrigen": ""
+  },
+  "Receptor": {
+    "RUTRecep": "",
+    "RznSocRecep": "",
+    "GiroRecep": "",
+    "DirRecep": "",
+    "CmnaRecep": ""
+  }
 }
 ```

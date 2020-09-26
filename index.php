@@ -8,6 +8,7 @@ include_once('./dte/factura.php');
 include_once('./dte/guiadespacho.php');
 include_once('./dte/notadecredito.php');
 include_once('./dte/libros.php');
+include_once('./dte/sets.php');
 
 use Slim\Factory\AppFactory;
 use Slim\Routing\RouteCollectorProxy;
@@ -27,6 +28,7 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
     global $notaDeDebito;
     global $libroGuiaDespacho;
     global $libroCompraVenta;
+    global $setBasico;
 
     $group->post("/estado", $dteEstado);
     $group->post("/boleta/emitir", $boletaEmitir);
@@ -39,6 +41,8 @@ $app->group("/dte", function (RouteCollectorProxy $group) {
 
     $group->post("/libroguiadedespacho", $libroGuiaDespacho);
     $group->post("/librocompraventa", $libroCompraVenta);
+
+    $group->post("/setbasico", $setBasico);
 });
 
 $app->run();
