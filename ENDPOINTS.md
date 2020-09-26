@@ -10,6 +10,8 @@ Ejemplo:
 
 `/dte/factura?certificacion=1`
 
+_por defecto: `certificacion=0`_
+
 #### Previsualización
 
 Antes de enviar un documento al SII es posible previsualizarla utilizando el parámetro `previsualizacion=1`
@@ -17,6 +19,8 @@ Antes de enviar un documento al SII es posible previsualizarla utilizando el par
 Ejemplo:
 
 `/dte/factura?previsualizar=1`
+
+_por defecto: `previsualizar=0`_
 
 #### Posición del logo
 
@@ -26,12 +30,14 @@ Ejemplo
 
 `/dte/factura?logo_izquierda=0`
 
+_por defecto: `logo_izquierda=1`_
+
 #### Delimitador CSV
 
 En los casos como los libros de compra y venta en que se envía el libro en formato CSV se puede usar la varible
 `csv_delimitador` para definir el delimitador del archivo.
 
-por defecto: `csv_delimitador=;`
+_por defecto: `csv_delimitador=;`_
 
 Ejemplo
 
