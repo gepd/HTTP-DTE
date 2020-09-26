@@ -51,7 +51,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "LogoUrl": "", // URL a imagen PNG
   "Firma": {
@@ -107,7 +107,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "LogoUrl": "", // URL a imagen PNG
   "Firma": {
@@ -163,7 +163,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "LogoUrl": "", // URL a imagen PNG
   "Firma": {
@@ -234,7 +234,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "LogoUrl": "", // URL a imagen PNG
   "Firma": {
@@ -290,7 +290,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "rut": "",
   "trackId": "",
@@ -313,7 +313,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "Firma": {
     "data": "", // Firma codificada en base64
@@ -345,7 +345,7 @@ Content-Type: application/json
 
 #### Cuerpo
 
-```json
+```jsonc
 {
   "Firma": {
     "data": "", // Firma codificada en base64
