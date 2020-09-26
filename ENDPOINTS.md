@@ -352,8 +352,8 @@ Content-Type: application/json
     "pass": ""
   },
   "Folios": {
+    // Tipo de DTE (ej. 33)
     "": {
-      // Tipo de DTE (ej. 33)
       "primer": 0, // Primer folio disponible para usar
       "data": "" // Folios codificados en base64
     }
@@ -377,6 +377,68 @@ Content-Type: application/json
     "GiroRecep": "",
     "DirRecep": "",
     "CmnaRecep": ""
+  }
+}
+```
+
+### Multi Envío de DTEs
+
+10. POST `/dte/multiEnvio`
+
+#### Cabecera
+
+```
+Content-Type: application/json
+```
+
+#### Cuerpo
+
+```jsonc
+{
+  "Firma": {
+    "data": "", // Firma codificada en base64
+    "pass": ""
+  },
+  "Folios": {
+    // Tipo de DTE (ej. 33)
+    "": {
+      "data": "" // Folios codificados en base64
+    }
+  },
+  "Documentos": [
+    {
+      "Encabezado": {
+        "IdDoc": {
+          "TipoDTE": 0,
+          "Folio": 0
+        },
+        "Receptor": {
+          "RUTRecep": "",
+          "RznSocRecep": "",
+          "GiroRecep": "",
+          "DirRecep": "",
+          "CmnaRecep": ""
+        }
+      },
+      "Detalle": [
+        {
+          "NmbItem": "",
+          "QtyItem": 0,
+          "PrcItem": 0
+        }
+      ]
+    }
+  ],
+  "RutReceptor": "",
+  "FchResol": "",
+  "NroResol": 0,
+  "Emisor": {
+    "RUTEmisor": "",
+    "RznSoc": "",
+    "GiroEmis": "",
+    "Acteco": 0,
+    "DirOrigen": "",
+    "CmnaOrigen": ""
   }
 }
 ```
