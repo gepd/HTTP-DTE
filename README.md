@@ -21,9 +21,11 @@ Para Probar la librería necesitas
 
 #### Desarrollo
 
-La estalación es muy simple, solo clona este reprositorio y ejecuta el siguiente comando (por ahora solo para desarrollo)
+##### API
 
-`docker-compose up -f ./docker-compose.dev.yml`
+Si deseas hacer llamadas directamente a la API ejecuta:
+
+`docker-compose up -f ./docker-compose.api.yml`
 
 Esto instalará todas las dependencias automáticamente y quedará listo para usar 🚀
 
@@ -31,9 +33,26 @@ Puedes acceder a la api desde: `http://localhost:8000`
 
 _NOTA: No es necesario reiniciar el contenedor al realizar un cambio en la librería, estos serán reconocidos automáticamente_
 
-### Peticiones
+##### Llamada entre contenedores
 
-Realiza una petición con cualquier cliente, como por ejemplo Postman
+El archivo `docker-compose.yml` contiene ejemplos con diferentes lenguajes para utilizar HTTP-DTE
+
+Para instalar las dependencias de NodeJS primero hay que ejecutar:
+
+`sudo docker-compose -f ejemplos/node/docker-compose.builder.yml run --rm install`
+
+> Si no te interesa NodeJS comenta el servicio `app-node` en `docker-compose-yml` y no ejecutes el comando anterior)
+
+Finalmente ejecuta
+
+`docker-compose up`
+
+Este útimo comando ejecutará todos los ejemplos disponibles
+
+* Abrir `http://localhost:3000` para ver el ejemplo de NodeJS
+* Abrir `http://localhost:3001` para ver el ejemplo de PHP
+
+### Peticiones
 
 [Lista de endpoints disponibles](https://github.com/gepd/HTTP-DTE/blob/develop/ENDPOINTS.md) 🔥
 
