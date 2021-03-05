@@ -11,16 +11,13 @@ services:
       
   # APP CON EJEMPLO DE NODEJS
   app-node:
-    build:
-      context: ./ejemplos/node
-      dockerfile: Dockerfile
-    ports: # Debes usar el mismo puerto que tu servidor
-      - "3000:3000"
-    depends_on: 
-      - dte-api
+    image: node:12.13.1-alpine
     volumes:
-      - ./ejemplos/node:/home/node/dte # Montamos el ejemplo desde fuera en el directorio de node del contenedor
-      - /home/node/dte/node_modules
+      - ./ejemplos/node:/usr/src/service
+    working_dir: /usr/src/service
+    command: npm run dev
+    ports:
+      - 3000:3000
   
   # APP CON EJEMPLO DE PHP
   app-php:
