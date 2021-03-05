@@ -1,0 +1,33 @@
+version: "3"
+services:
+  dte-api:
+    restart: "always"
+    image: chialab/php:7.3-fpm
+    command: bash -c "composer install && php -S 0.0.0.0:8000 index.php"
+    expose:
+      - "8000"
+    volumes:
+      - .:/var/www/html
+      
+  # APP CON EJEMPLO DE NODEJS
+  app-node:
+    build:
+      context: ./ejemplos/node
+      dockerfile: Dockerfile
+    ports: # Debes usar el mismo puerto que tu servidor
+      - "3000:3000"
+    depends_on: 
+      - dte-api
+    volumes:
+      - ./ejemplos/node:/home/node/dte # Montamos el ejemplo desde fuera en el directorio de node del contenedor
+      - /home/node/dte/node_modules
+  
+  # APP CON EJEMPLO DE PHP
+  app-php:
+    image: php:8-apache
+    ports: # Debes usar el mismo puerto que tu servidor
+      - "3001:80"
+    depends_on: 
+      - dte-api
+    volumes:
+      - ./ejemplos/php/:/var/www/html
